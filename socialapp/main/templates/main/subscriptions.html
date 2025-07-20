@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% block title %}Мои подписки{% endblock %}
+{% block content %}
+<div style="max-width:600px;margin:auto;padding:20px;">
+  <h2>Мои подписки</h2>
+  {% if users %}
+    <ul>
+      {% for u in users %}
+        <li style="margin-bottom:10px;">
+          {{ u.username }}
+          <form method="post" action="{% url 'follow_user' u.id %}?next={{ request.path }}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" style="margin-left:10px;padding:3px 8px;">Отписаться</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Вы ни на кого ещё не подписаны.</p>
+  {% endif %}
+</div>
+{% endblock %}

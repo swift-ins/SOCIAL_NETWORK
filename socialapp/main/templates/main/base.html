@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}My Social App{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'main/styles.css' %}">
+</head>
+<body>
+  <style>
+  body {
+    background-color: #e6f7ff;
+  }
+</style>
+
+  <header style="background: #4b7e8b; color: #fff; padding: 10px 20px;">
+    <div style="max-width: 800px; margin: auto; display: flex; align-items: center; justify-content: space-between;">
+      <h1 style="margin: 0; font-size: 1.5em;"><a href="{% url 'index' %}" style="color: #fff; text-decoration: none;">SocialApp</a></h1>
+      <nav>
+        <a href="{% url 'index' %}" style="color: #fff; margin-right: 15px; text-decoration: none;">Лента</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'subscriptions' %}" style="color: #fff; margin-right: 15px; text-decoration: none;">Мои подписки</a>
+          <a href="{% url 'followers' %}" style="color: #fff; margin-right: 15px; text-decoration: none;">Подписчики</a>
+          <a href="{% url 'logout' %}" style="color: #fff; text-decoration: none;">Выход</a>
+        {% else %}
+          <a href="{% url 'login' %}" style="color: #fff; margin-right: 15px; text-decoration: none;">Вход</a>
+          <a href="{% url 'register' %}" style="color: #fff; text-decoration: none;">Регистрация</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 800px; margin: 20px auto;">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer style="text-align: center; color: #777; font-size: 0.9em; margin: 40px 0;">
+    &copy; 2025 SocialApp. Все права защищены.
+  </footer>
+</body>
+</html>
+

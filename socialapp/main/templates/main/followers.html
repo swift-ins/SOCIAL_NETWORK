@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+{% block title %}Подписчики{% endblock %}
+{% block content %}
+<div style="max-width:600px;margin:auto;padding:20px;">
+  <h2>Подписчики</h2>
+  {% if users %}
+    <ul>
+      {% for u in users %}
+        <li style="margin-bottom:10px;">
+          {{ u.username }}
+          {% if request.user != u %}
+            <form method="post" action="{% url 'follow_user' u.id %}?next={{ request.path }}" style="display:inline;">
+              {% csrf_token %}
+              {% if u in request.user.following.all %}
+                <button type="submit" style="margin-left:10px;padding:3px 8px;">Отписаться</button>
+              {% else %}
+                <button type="submit" style="margin-left:10px;padding:3px 8px;">Подписаться</button>
+              {% endif %}
+            </form>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>У вас ещё нет подписчиков.</p>
+  {% endif %}
+</div>
+{% endblock %}
