@@ -5,10 +5,9 @@
 {% block title %}Welcome{% endblock %}
 {% block content %}
   <div style="background-color: #e6f7ff; min-height: 100vh; padding: 20px 10px; text-align: center;">
-    <img src="{% static 'main/net3.jpg' %}" alt="Logo" style="max-width: 400px; border-radius: 10px; box-shadow: 0 0 10px #3730bf;">
+    <img src="{% static 'main/net3.jpg' %}" alt="Logo" style="max-width: 500px; border-radius: 10px; box-shadow: 0 0 10px #3730bf;">
     <h1 style="margin-top: 20px; font-size: 1em; color: hsl(257, 93%, 39%);">ЭТО ПОСТРАНСТВО ДЛЯ ОБМЕНА МНЕНИЯМИ, ЭМОЦИЯМИ, ФОТОГРАФИЯМИ, ИДЕЯМИ!</h1>
-    <p style="font-size: 1.2em; color: #020913;">Приглашаю залогиниться и принять участие в обсуждении! Задавай темы, и мы подключимся.
-      Делись идеями и найдешь поддержку. Есть вопрос? Кто-то из нас знает ответ.</p>
+    <p style="font-size: 1.2em; color: #020913;">YOU ALWAYS WELCOME! </p>
 
     {% if user.is_authenticated %}
       <p><a href="{% url 'index' %}">Go to Feed</a></p>
